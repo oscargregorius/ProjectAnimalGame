@@ -58,8 +58,13 @@ public class Game {
                             players.get(j).sellAnimal();
                             break;
                         case "5":
-                            if(!players.get(j).checkMatePossibility()){check = true;}
-                            players.get(j).mateAnimals();
+                            if(!players.get(j).checkMatePossibility()){
+                                System.out.println("You dont have the animals/gender required to mate");
+                                System.out.println("Press a key following by enter to go back to the menu");
+                                scanner.next();
+                                check = true;
+                            }
+                            if(players.get(j).checkMatePossibility()){players.get(j).mateAnimals();}
                     }
                     System.out.println("\n".repeat(50));
                 }while(check);

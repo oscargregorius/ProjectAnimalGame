@@ -116,10 +116,6 @@ public class Player {
     public void mateAnimals(){
 
         String type = "";
-        if(!checkMatePossibility()){
-            System.out.println("You dont have the animals/gender required to mate");
-            return;
-        }
         do {
             System.out.println("What animals do you want to mate? (It has to be the same sort)");
             System.out.println("Pick a male animal to begin with: ");
@@ -159,12 +155,11 @@ public class Player {
             }
         }while (!animals.get(Integer.parseInt(input) -1).getClass().getSimpleName().equals(animals.get(Integer.parseInt(input2) - 1).getClass().getSimpleName()));
 
-        //int chance = random.nextInt(1);
-        int chance = 1;
+        int chance = 1 + random.nextInt(2);
 
         if(chance == 1){
-            chance = random.nextInt(1);
-            if(chance == 0){
+            chance = 1 + random.nextInt(2);
+            if(chance == 1){
                 System.out.println("Congratz it is a boy!");
                 System.out.println("What name is the baby going to have?");
                 input = scanner.next();
@@ -185,6 +180,10 @@ public class Player {
                 if(type.equals("Pig")){animals.add(new Pig(input,"female"));}
                 if(type.equals("Horse")){animals.add(new Horse(input,"female"));}
             }
+        }else{
+            System.out.println("Sorry, it did not work this time..");
+            System.out.println("Press any key following by enter to continue");
+            scanner.next();
         }
     }
 
@@ -212,6 +211,7 @@ public class Player {
             if(animals.get(i).gender.equals("male")){male++;}
             if(animals.get(i).gender.equals("female")){female++;}
             for(int j = 0; j < animals.size(); j++){
+                if(animals.get(i).hashCode() == animals.get(j).hashCode()){continue;}
                 if(animals.get(i).getClass().getSimpleName().equals(animals.get(j).getClass().getSimpleName())){sort ++;}
             }
         }
