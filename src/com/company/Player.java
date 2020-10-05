@@ -22,6 +22,11 @@ public class Player {
     }
 
     public void buyAnimal(){
+        if(checkBalance()){
+            System.out.println("You dont have enough money. Press any key following by enter to continue");
+            scanner.next();
+            return;
+        }
         do {
             animals.add(Store.showAnimalsForSale(this));
             System.out.println("Buy another one? y/n");
@@ -33,6 +38,11 @@ public class Player {
     }
 
     public void buyFood(){
+        if(checkBalance()){
+            System.out.println("You dont have enough money. Press any key following by enter to continue");
+            scanner.next();
+            return;
+        }
         do {
             food.add(Store.showFoodForSale(this));
             System.out.println("Buy another one? y/n");
@@ -216,6 +226,13 @@ public class Player {
             }
         }
         if(male > 0 && female > 0 && sort > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkBalance(){
+        if(this.money <= 0){
             return true;
         }
         return false;

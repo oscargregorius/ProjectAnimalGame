@@ -46,9 +46,11 @@ public class Game {
 
                     switch (input) {
                         case "1":
+                            if(players.get(j).checkBalance()){check = true;}
                             players.get(j).buyAnimal();
                             break;
                         case "2":
+                            if(players.get(j).checkBalance()){check = true;}
                             players.get(j).buyFood();
                             break;
                         case "3":
