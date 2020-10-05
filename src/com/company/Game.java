@@ -14,11 +14,24 @@ public class Game {
 
     public Game(){
         Store.buyInAllTheAnimalsAndFood();
-        System.out.println("Welcome, how many rounds do u want to play? 5-30?");
-        rounds = scanner.nextInt();
-        System.out.println("How many players do you wanna play with?");
-        amountOfPlayers = scanner.nextInt();
-
+        while(true) {
+            System.out.println("Welcome, how many rounds do u want to play? 5-30?");
+            rounds = scanner.nextInt();
+            if (rounds < 5 || rounds > 30) {
+                System.out.println("please enter a number between 5 - 30.");
+            }else{
+                break;
+            }
+        }
+        while (true) {
+            System.out.println("How many players do you wanna play with 1-4?");
+            amountOfPlayers = scanner.nextInt();
+            if(amountOfPlayers < 1 || amountOfPlayers > 4){
+                System.out.println("Please enter a number between 1-4 ");
+            }else{
+                break;
+            }
+        }
         for(int i = 0; i < amountOfPlayers; i++){
             System.out.println("Player " + (i + 1) + " enter your name");
             String name = scanner.next();
@@ -44,6 +57,12 @@ public class Game {
                     showAnimals(players.get(j));
                     input = scanner.next();
 
+                    if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 5){
+                        System.out.println("invalid move enter a key following by enter to continue.");
+                        scanner.next();
+                        check = true;
+                    }
+
                     switch (input) {
                         case "1":
                             if(players.get(j).checkBalance()){check = true;}
@@ -57,6 +76,7 @@ public class Game {
                             players.get(j).feedAnimal();
                             break;
                         case "4":
+                            if(players.get(j).animals.size() <= 0){check = true;}
                             players.get(j).sellAnimal();
                             break;
                         case "5":
