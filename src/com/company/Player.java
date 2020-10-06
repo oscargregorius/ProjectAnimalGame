@@ -44,7 +44,7 @@ public class Player {
             return;
         }
         do {
-            food.add(Store.showFoodForSale(this));
+            Store.showFoodForSale(this);
             System.out.println("Buy another one? y/n");
             String input = scanner.next();
             if(input.equals("n")){
@@ -56,23 +56,8 @@ public class Player {
     public void feedAnimal(Player p){
         while (true) {
             if(checkAnimalsToFeed()){
-                System.out.println("You dont have the right type of food to feed your animals.");
+                System.out.println("You dont have the right/enough type of food to feed your animals.");
                 System.out.println("Press any key following by enter to continue");
-                scanner.next();
-                return;
-            }
-            if (animals.size() == 0) {
-                System.out.println("You dont have any animals to feed.");
-                System.out.println("Do you want to buy one? y/n");
-                input = scanner.next();
-                if (input.equals("y")) {
-                    buyAnimal();
-                } else {
-                    return;
-                }
-            }
-            if (food.size() == 0) {
-                System.out.println("You dont have food left, press any key and enter to continue");
                 scanner.next();
                 return;
             }

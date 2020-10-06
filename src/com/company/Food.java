@@ -10,4 +10,7 @@ public class Food {
         this.name = name;
         this.kg = kg;
     }
+    public  String getName(){
+        return this.name;
+    }
 }
