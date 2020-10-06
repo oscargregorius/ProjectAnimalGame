@@ -67,7 +67,6 @@ public class Player {
                 input = scanner.next();
                 if (input.equals("y")) {
                     buyAnimal();
-                    return;
                 } else {
                     return;
                 }
@@ -91,20 +90,25 @@ public class Player {
                 co++;
             }
             input2 = scanner.next();
-            if(food.get(Integer.parseInt(input2) - 1).kg != 0) {
-                food.get(Integer.parseInt(input2) - 1).kg -= 1;
+            if(animals.get(Integer.parseInt(input) - 1).eat(food.get(Integer.parseInt(input2)-1))) {
+                if (food.get(Integer.parseInt(input2) - 1).kg != 0) {
+                    food.get(Integer.parseInt(input2) - 1).kg -= 1;
+                }
+                if (food.get(Integer.parseInt(input2) - 1).kg == 0) {
+                    food.remove(Integer.parseInt(input2) - 1);
+                }
+                animals.get(Integer.parseInt(input) - 1).health += 10;
+                System.out.println(animals.get(Integer.parseInt(input) - 1).name + "s current health is: "
+                        + animals.get(Integer.parseInt(input) - 1).health);
+                System.out.println("Feed another animal? y/n");
+                input = scanner.next();
+                if (input.equals("n")) {
+                    return;
+                }
+            }else{
+                System.out.println("I dont eat that..");
             }
-            if(food.get(Integer.parseInt(input2) - 1).kg == 0){
-                food.remove(Integer.parseInt(input2) - 1);
-            }
-            animals.get(Integer.parseInt(input) - 1).health += 10;
-            System.out.println(animals.get(Integer.parseInt(input) - 1).name + "s current health is: "
-                    + animals.get(Integer.parseInt(input) - 1).health);
-            System.out.println("Feed another animal? y/n");
-            input = scanner.next();
-            if(input.equals("n")){
-                return;
-            }
+
         }
     }
 
