@@ -99,6 +99,7 @@ public class Game {
             }
             looseHealth();
         }
+        checkTheWinner();
     }
 
 
@@ -122,6 +123,21 @@ public class Game {
         for(int i = 0; i < p.food.size();i++){
             System.out.println(p.food.get(i).name + " " + p.food.get(i).kg + "kg");
         }
+        System.out.println("-".repeat(30));
+    }
+    public void checkTheWinner(){
+        for(int i = 0; i < players.size(); i++){
+            players.get(i).sellAllMyAnimals();
+        }
+        Player winner = null;
+        for(int i = 0; i < players.size(); i++) {
+            winner = players.get(0);
+            if (players.get(i).money > winner.money) {
+                winner = players.get(i);
+            }
+        }
+        System.out.println("-".repeat(30));
+        System.out.println("The winner is: " + winner.name);
         System.out.println("-".repeat(30));
     }
 

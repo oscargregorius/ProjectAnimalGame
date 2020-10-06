@@ -244,4 +244,11 @@ public class Player {
         return false;
     }
 
+    public void sellAllMyAnimals(){
+        for(int i = 0; i < animals.size(); i++){
+            int calc = animals.get(i).health * animals.get(i).price;
+            this.money += calc / 100;
+        }
+    }
+
 }
