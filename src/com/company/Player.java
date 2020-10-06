@@ -82,7 +82,11 @@ public class Player {
                 if (food.get(Integer.parseInt(input2) - 1).kg == 0) {
                     food.remove(Integer.parseInt(input2) - 1);
                 }
-                animals.get(Integer.parseInt(input) - 1).health += 10;
+                if(animals.get(Integer.parseInt(input) - 1).health >= 90){
+                    animals.get(Integer.parseInt(input) - 1).health = 100;
+                }else {
+                    animals.get(Integer.parseInt(input) - 1).health += 10;
+                }
                 System.out.println(animals.get(Integer.parseInt(input) - 1).name + "s current health is: "
                         + animals.get(Integer.parseInt(input) - 1).health);
                 System.out.println("Feed another animal? y/n");
