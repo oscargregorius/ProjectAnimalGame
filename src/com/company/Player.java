@@ -53,8 +53,14 @@ public class Player {
         }while (money !=0);
     }
 
-    public void feedAnimal(){
+    public void feedAnimal(Player p){
         while (true) {
+            if(checkAnimalsToFeed()){
+                System.out.println("You dont have the right type of food to feed your animals.");
+                System.out.println("Press any key following by enter to continue");
+                scanner.next();
+                return;
+            }
             if (animals.size() == 0) {
                 System.out.println("You dont have any animals to feed.");
                 System.out.println("Do you want to buy one? y/n");
@@ -242,6 +248,22 @@ public class Player {
             return true;
         }
         return false;
+    }
+
+    public boolean checkAnimalsToFeed(){
+        int check = 0;
+        for(int i = 0; i < animals.size(); i++){
+            for(int j = 0; j < food.size(); j++){
+                if(animals.get(i).eat(food.get(j))){
+                    check++;
+                }
+            }
+        }
+        if(check == 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public void sellAllMyAnimals(){

@@ -79,7 +79,8 @@ public class Game {
                             players.get(j).buyFood();
                             break;
                         case "3":
-                            players.get(j).feedAnimal();
+                            if(players.get(j).checkAnimalsToFeed()){check = true;}
+                            players.get(j).feedAnimal(players.get(j));
                             break;
                         case "4":
                             if(players.get(j).animals.size() <= 0){check = true;}

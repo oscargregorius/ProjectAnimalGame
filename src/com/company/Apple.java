@@ -1,8 +1,8 @@
 package com.company;
 
-public class Apples extends Food {
+public class Apple extends Food {
 
-    public Apples(String name, int kg) {
+    public Apple(String name, int kg) {
         super(name, kg);
         this.price = 100;
     }

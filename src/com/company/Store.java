@@ -80,7 +80,15 @@ public class Store {
 
         int co = 1;
         for(Food f : food){
-            System.out.println(co + ": " + f.name + " price: " + f.price);
+            if(f.name.equals("Meat")) {
+                System.out.println(co + ": (Dogs and cats food) " + f.name + " price: " + f.price);
+            }
+            if(f.name.equals("Apple")) {
+                System.out.println(co + ": (cats food) " + f.name + " price: " + f.price);
+            }
+            if(f.name.equals("Grass")) {
+                System.out.println(co + ": (Horses, cows and pigs food) " + f.name + " price: " + f.price);
+            }
             co++;
         }
         while (true){
