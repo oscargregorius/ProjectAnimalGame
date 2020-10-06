@@ -74,18 +74,28 @@ public class Player {
                 System.out.println(co + ": " + f.name + " " + f.kg + "kg");
                 co++;
             }
+            int kg;
             input2 = scanner.next();
+            System.out.println("How many KG do you want to feed " +
+                    animals.get(Integer.parseInt(input) - 1).name + " with?");
+            while(true) {
+                kg = Integer.parseInt(scanner.next());
+                if (kg > food.get(Integer.parseInt(input2) - 1).kg) {
+                    System.out.println("You dont have that much..");
+                }else{
+                    break;
+                }
+            }
             if(animals.get(Integer.parseInt(input) - 1).eat(food.get(Integer.parseInt(input2)-1))) {
                 if (food.get(Integer.parseInt(input2) - 1).kg != 0) {
-                    food.get(Integer.parseInt(input2) - 1).kg -= 1;
+                    food.get(Integer.parseInt(input2) - 1).kg -= kg;
                 }
                 if (food.get(Integer.parseInt(input2) - 1).kg == 0) {
                     food.remove(Integer.parseInt(input2) - 1);
                 }
-                if(animals.get(Integer.parseInt(input) - 1).health >= 90){
+                animals.get(Integer.parseInt(input) - 1).health += kg * 10;
+                if(animals.get(Integer.parseInt(input) - 1).health > 100){
                     animals.get(Integer.parseInt(input) - 1).health = 100;
-                }else {
-                    animals.get(Integer.parseInt(input) - 1).health += 10;
                 }
                 System.out.println(animals.get(Integer.parseInt(input) - 1).name + "s current health is: "
                         + animals.get(Integer.parseInt(input) - 1).health);
