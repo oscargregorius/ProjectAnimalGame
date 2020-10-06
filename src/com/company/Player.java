@@ -112,12 +112,12 @@ public class Player {
     }
 
     public void sellAnimal(){
+        while (true) {
         if(animals.size() <= 0){
             System.out.println("You dont have any animals to sell yet. Press any key following by enter to continue.");
             scanner.next();
             return;
         }
-        while (true) {
             System.out.println("What animal do you want to sell?");
             System.out.println("Current balance: " + this.money);
             int co = 1;

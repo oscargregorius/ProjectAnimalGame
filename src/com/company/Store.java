@@ -21,53 +21,109 @@ public class Store {
                 System.out.println(co + ": " + a.name + " price: " + a.price);
                 co++;
             }
-            while (true){
-            input = scanner.next();
-            if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 5){
-                System.out.println("Not a valid move, type a number between 1-5");
-            }else{
-                break;
+            try {
+                while (true) {
+                    input = scanner.next();
+                    if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 5) {
+                        System.out.println("Not a valid move, type a number between 1-5");
+                    } else {
+                        break;
+                    }
+                }
+            }catch (Exception e){
+                System.out.println("Not a valid move, press any key following by enter to continue");
+                scanner.next();
+                showAnimalsForSale(p);
             }
-        }
         if(input.equals("1")){
             p.money -= animals.get(Integer.parseInt(input) - 1).price;
             System.out.println("What do you want to call your " + animals.get(Integer.parseInt(input) - 1).name);
             input2 = scanner.next();
-            System.out.println("What gender?");
-            input = scanner.next();
-            return new Dog(input2,input);
+            System.out.println("What gender?\n1: Male \n2: Female");
+            while (true) {
+                input = scanner.next();
+                if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2){
+                    System.out.println("Not a valid move..");
+                }
+                if (input.equals("1")) {
+                    return new Dog(input2, "male");
+                }
+                if(input.equals("2")) {
+                    return new Dog(input2, "female");
+                }
+            }
         }
         if(input.equals("2")){
             p.money -= animals.get(Integer.parseInt(input) - 1).price;
             System.out.println("What do you want to call your " + animals.get(Integer.parseInt(input) - 1).name);
             input2 = scanner.next();
-            System.out.println("What gender?");
-            input = scanner.next();
-            return new Horse(input2,input);
+            System.out.println("What gender?\n1: Male \n2: Female");
+            while (true) {
+                input = scanner.next();
+                if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2){
+                    System.out.println("Not a valid move..");
+                }
+                if (input.equals("1")) {
+                    return new Dog(input2, "male");
+                }
+                if(input.equals("2")) {
+                    return new Dog(input2, "female");
+                }
+            }
         }
         if(input.equals("3")){
             p.money -= animals.get(Integer.parseInt(input) - 1).price;
             System.out.println("What do you want to call your " + animals.get(Integer.parseInt(input) - 1).name);
             input2 = scanner.next();
-            System.out.println("What gender?");
-            input = scanner.next();
-            return new Cow(input2,input);
+            System.out.println("What gender?\n1: Male \n2: Female");
+            while (true) {
+                input = scanner.next();
+                if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2){
+                    System.out.println("Not a valid move..");
+                }
+                if (input.equals("1")) {
+                    return new Dog(input2, "male");
+                }
+                if(input.equals("2")) {
+                    return new Dog(input2, "female");
+                }
+            }
         }
         if(input.equals("4")){
             p.money -= animals.get(Integer.parseInt(input) - 1).price;
             System.out.println("What do you want to call your " + animals.get(Integer.parseInt(input) - 1).name);
             input2 = scanner.next();
-            System.out.println("What gender?");
-            input = scanner.next();
-            return new Cat(input2,input);
+            System.out.println("What gender?\n1: Male \n2: Female");
+            while (true) {
+                input = scanner.next();
+                if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2){
+                    System.out.println("Not a valid move..");
+                }
+                if (input.equals("1")) {
+                    return new Dog(input2, "male");
+                }
+                if(input.equals("2")) {
+                    return new Dog(input2, "female");
+                }
+            }
         }
         if(input.equals("5")){
             p.money -= animals.get(Integer.parseInt(input) - 1).price;
             System.out.println("What do you want to call your " + animals.get(Integer.parseInt(input) - 1).name);
             input2 = scanner.next();
-            System.out.println("What gender?");
-            input = scanner.next();
-            return new Pig(input2,input);
+            System.out.println("What gender?\n1: Male \n2: Female");
+            while (true) {
+                input = scanner.next();
+                if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2){
+                    System.out.println("Not a valid move..");
+                }
+                if (input.equals("1")) {
+                    return new Dog(input2, "male");
+                }
+                if(input.equals("2")) {
+                    return new Dog(input2, "female");
+                }
+            }
         }
         return null;
     }
