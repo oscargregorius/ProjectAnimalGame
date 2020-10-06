@@ -13,24 +13,29 @@ public class Game {
     String input = "";
 
     public Game(){
-        Store.buyInAllTheAnimalsAndFood();
-        while(true) {
-            System.out.println("Welcome, how many rounds do u want to play? 5-30?");
-            rounds = scanner.nextInt();
-            if (rounds < 5 || rounds > 30) {
-                System.out.println("please enter a number between 5 - 30.");
-            }else{
-                break;
+        try {
+            while (true) {
+                System.out.println("Welcome, how many rounds do u want to play? 5-30?");
+                rounds = scanner.nextInt();
+
+                if (rounds < 5 || rounds > 30) {
+                    System.out.println("please enter a number between 5 - 30.");
+                } else {
+                    break;
+                }
             }
-        }
-        while (true) {
-            System.out.println("How many players do you wanna play with 1-4?");
-            amountOfPlayers = scanner.nextInt();
-            if(amountOfPlayers < 1 || amountOfPlayers > 4){
-                System.out.println("Please enter a number between 1-4 ");
-            }else{
-                break;
+            while (true) {
+                System.out.println("How many players do you wanna play with 1-4?");
+                amountOfPlayers = scanner.nextInt();
+                if (amountOfPlayers < 1 || amountOfPlayers > 4) {
+                    System.out.println("Please enter a number between 1-4 ");
+                } else {
+                    break;
+                }
             }
+        }catch (Exception e){
+            System.out.println("Not a valid input");
+            new Game();
         }
         for(int i = 0; i < amountOfPlayers; i++){
             System.out.println("Player " + (i + 1) + " enter your name");
@@ -38,6 +43,7 @@ public class Game {
             players.add(new Player(name));
         }
         System.out.println("\n".repeat(50));
+        Store.buyInAllTheAnimalsAndFood();
         start();
     }
 
