@@ -21,20 +21,14 @@ public class Store {
                 System.out.println(co + ": " + a.name + " price: " + a.price);
                 co++;
             }
-            try {
+
                 while (true) {
                     input = scanner.next();
-                    if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 5) {
-                        System.out.println("Not a valid move, type a number between 1-5");
-                    } else {
+                    if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4") || input.equals("5")){
                         break;
                     }
+                    System.out.println("Not a valid move, type a number between 1-5");
                 }
-            }catch (Exception e){
-                System.out.println("Not a valid move, press any key following by enter to continue");
-                scanner.next();
-                showAnimalsForSale(p);
-            }
         if(input.equals("1")){
             p.money -= animals.get(Integer.parseInt(input) - 1).price;
             System.out.println("What do you want to call your " + animals.get(Integer.parseInt(input) - 1).name);
@@ -42,15 +36,13 @@ public class Store {
             System.out.println("What gender?\n1: Male \n2: Female");
             while (true) {
                 input = scanner.next();
-                if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2){
-                    System.out.println("Not a valid move..");
-                }
                 if (input.equals("1")) {
                     return new Dog(input2, "male");
                 }
                 if(input.equals("2")) {
                     return new Dog(input2, "female");
                 }
+                System.out.println("Not a valid move. Type 1 or 2");
             }
         }
         if(input.equals("2")){
@@ -60,15 +52,13 @@ public class Store {
             System.out.println("What gender?\n1: Male \n2: Female");
             while (true) {
                 input = scanner.next();
-                if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2){
-                    System.out.println("Not a valid move..");
-                }
                 if (input.equals("1")) {
                     return new Dog(input2, "male");
                 }
                 if(input.equals("2")) {
                     return new Dog(input2, "female");
                 }
+                System.out.println("Not a valid move. type 1 or 2");
             }
         }
         if(input.equals("3")){
@@ -78,15 +68,13 @@ public class Store {
             System.out.println("What gender?\n1: Male \n2: Female");
             while (true) {
                 input = scanner.next();
-                if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2){
-                    System.out.println("Not a valid move..");
-                }
                 if (input.equals("1")) {
                     return new Dog(input2, "male");
                 }
                 if(input.equals("2")) {
                     return new Dog(input2, "female");
                 }
+                System.out.println("Not a valid move. Type 1 or 2");
             }
         }
         if(input.equals("4")){
@@ -96,15 +84,13 @@ public class Store {
             System.out.println("What gender?\n1: Male \n2: Female");
             while (true) {
                 input = scanner.next();
-                if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2){
-                    System.out.println("Not a valid move..");
-                }
                 if (input.equals("1")) {
                     return new Dog(input2, "male");
                 }
                 if(input.equals("2")) {
                     return new Dog(input2, "female");
                 }
+                System.out.println("Not a valid move. Type 1 or 2");
             }
         }
         if(input.equals("5")){
@@ -114,15 +100,13 @@ public class Store {
             System.out.println("What gender?\n1: Male \n2: Female");
             while (true) {
                 input = scanner.next();
-                if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 2){
-                    System.out.println("Not a valid move..");
-                }
                 if (input.equals("1")) {
                     return new Dog(input2, "male");
                 }
                 if(input.equals("2")) {
                     return new Dog(input2, "female");
                 }
+                System.out.println("Not a valid move. Type 1 or 2.");
             }
         }
         return null;
@@ -146,11 +130,28 @@ public class Store {
             }
             co++;
         }
-        input = scanner.next();
+        while(true) {
+            input = scanner.next();
+            if(input.equals("1") || input.equals("2") || input.equals("3")){
+                break;
+            }
+            System.out.println("Not a valid move");
+        }
 
         if(input.equals("1")){
             System.out.println("How many kilos? Minimum 1kg");
-            input2 = scanner.next();
+            while (true) {
+                    input2 = scanner.next();
+                    try {
+                        if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
+                            System.out.println("You dont have that much money. Try again.");
+                        } else {
+                            break;
+                        }
+                    }catch (Exception e){
+                        System.out.println("Not a valid move..");
+                    }
+            }
             p.money -= food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2);
             if(checkIfAllreadyBought(p, "Meat")){return;}
             p.food.add(new Meat("Meat",Integer.parseInt(input2)));
@@ -158,7 +159,18 @@ public class Store {
         }
         if(input.equals("2")){
             System.out.println("How many kilos? Minimum 1kg");
-            input2 = scanner.next();
+            while (true) {
+                input2 = scanner.next();
+                try {
+                    if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
+                        System.out.println("You dont have that much money. Try again.");
+                    } else {
+                        break;
+                    }
+                }catch (Exception e){
+                    System.out.println("Not a valid move..");
+                }
+            }
             p.money -= food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2);
             if(checkIfAllreadyBought(p,"Apple")){return;}
             p.food.add(new Apple("Apple",Integer.parseInt(input2)));
@@ -166,7 +178,18 @@ public class Store {
         }
         if(input.equals("3")){
             System.out.println("How many kilos? Minimum 1kg");
-            input2 = scanner.next();
+            while (true) {
+                input2 = scanner.next();
+                try {
+                    if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
+                        System.out.println("You dont have that much money. Try again.");
+                    } else {
+                        break;
+                    }
+                }catch (Exception e){
+                    System.out.println("Not a valid move..");
+                }
+            }
             p.money -= food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2);
             if(checkIfAllreadyBought(p,"Grass")){return;}
             p.food.add(new Grass("Grass",Integer.parseInt(input2)));

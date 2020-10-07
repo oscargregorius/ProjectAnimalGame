@@ -67,7 +67,18 @@ public class Player implements Comparable<Player>{
                 System.out.println(co + ": " + a.name);
                 co++;
             }
-            input = scanner.next();
+            while (true) {
+                input = scanner.next();
+                try {
+                    if (Integer.parseInt(input) > animals.size() || Integer.parseInt(input) < 1) {
+                        System.out.println("Not a valid move.");
+                    } else {
+                        break;
+                    }
+                }catch (Exception e){
+                    System.out.println("Not a valid move.");
+                }
+            }
             System.out.println("What do you want to feed " + animals.get(Integer.parseInt(input) - 1).name + " with?");
             co = 1;
             for (Food f : food) {
@@ -75,15 +86,30 @@ public class Player implements Comparable<Player>{
                 co++;
             }
             int kg;
-            input2 = scanner.next();
+            while (true) {
+                try {
+                    input2 = scanner.next();
+                    if (Integer.parseInt(input2) > food.size() || Integer.parseInt(input2) < 1) {
+                        System.out.println("Not a valid move.");
+                    } else {
+                        break;
+                    }
+                }catch (Exception e){
+                    System.out.println("Not a valid move.");
+                }
+            }
             System.out.println("How many KG do you want to feed " +
                     animals.get(Integer.parseInt(input) - 1).name + " with?");
             while(true) {
-                kg = Integer.parseInt(scanner.next());
-                if (kg > food.get(Integer.parseInt(input2) - 1).kg) {
-                    System.out.println("You dont have that much..");
-                }else{
-                    break;
+                try {
+                    kg = Integer.parseInt(scanner.next());
+                    if (kg > food.get(Integer.parseInt(input2) - 1).kg) {
+                        System.out.println("You dont have that much..");
+                    } else {
+                        break;
+                    }
+                }catch (Exception e){
+                    System.out.println("Not a valid move.");
                 }
             }
             if(animals.get(Integer.parseInt(input) - 1).eat(food.get(Integer.parseInt(input2)-1))) {
@@ -125,7 +151,18 @@ public class Player implements Comparable<Player>{
                 System.out.println(co + ": " + a.name);
                 co++;
             }
-            input = scanner.next();
+            while (true) {
+                input = scanner.next();
+                try {
+                    if (Integer.parseInt(input) > animals.size() || Integer.parseInt(input) < 1) {
+                        System.out.println("Not a valid move");
+                    } else {
+                        break;
+                    }
+                }catch (Exception e){
+                    System.out.println("Not a valid move");
+                }
+            }
             int calc = animals.get(Integer.parseInt(input) - 1).health * animals.get(Integer.parseInt(input) - 1).price;
             this.money += calc / 100;
             animals.remove(Integer.parseInt(input) - 1);
@@ -151,7 +188,18 @@ public class Player implements Comparable<Player>{
                     System.out.println(co + ": " + a.getClass().getSimpleName() + ": " + a.name + " " + a.gender);
                     co++;
                 }
-                input = scanner.next();
+                while(true) {
+                    input = scanner.next();
+                    try {
+                        if (Integer.parseInt(input) > animals.size() || Integer.parseInt(input) < 1) {
+                            System.out.println("Not a valid move");
+                        } else {
+                            break;
+                        }
+                    }catch (Exception e){
+                        System.out.println("Not a valid move");
+                    }
+                }
                 if (!animals.get(Integer.parseInt(input) - 1).gender.equals("male")) {
                     System.out.println("Not a female, pick a male to begin with");
                 } else {
@@ -166,7 +214,18 @@ public class Player implements Comparable<Player>{
                     System.out.println(co + ": " + a.getClass().getSimpleName() + ": " + a.name + " " + a.gender);
                     co++;
                 }
-                input2 = scanner.next();
+                while (true) {
+                    input2 = scanner.next();
+                    try {
+                        if (Integer.parseInt(input2) > animals.size() || Integer.parseInt(input2) < 1) {
+                            System.out.println("Not a valid move");
+                        } else {
+                            break;
+                        }
+                    }catch (Exception e){
+                        System.out.println("Not a valid move");
+                    }
+                }
                 if (!animals.get(Integer.parseInt(input2) - 1).gender.equals("female")) {
                     System.out.println("Not a male, pick a female..");
                 } else {

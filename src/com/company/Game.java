@@ -62,7 +62,13 @@ public class Game {
                     System.out.println("4: Sell animals");
                     System.out.println("5: Mate animals");
                     showAnimals(players.get(j));
-                    input = scanner.next();
+                    while(true) {
+                        input = scanner.next();
+                        if(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4") || input.equals("5")){
+                            break;
+                        }
+                        System.out.println("Not a valid move");
+                    }
 
                     if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 5){
                         System.out.println("invalid move enter a key following by enter to continue.");
