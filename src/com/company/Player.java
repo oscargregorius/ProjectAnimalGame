@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Player {
+public class Player implements Comparable<Player>{
     String name;
     int money;
     Random random = new Random();
@@ -274,6 +274,15 @@ public class Player {
             int calc = animals.get(i).health * animals.get(i).price;
             this.money += calc / 100;
         }
+    }
+
+    @Override
+    public int compareTo(Player otherPlayer) {
+        return otherPlayer.getMoney() - money;
+    }
+
+    public int getMoney(){
+        return this.money;
     }
 
 }

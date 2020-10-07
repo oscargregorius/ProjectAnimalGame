@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Game {
@@ -140,6 +141,13 @@ public class Game {
         System.out.println("-".repeat(30));
         System.out.println("The winner is: " + winner.name);
         System.out.println("-".repeat(30));
+        System.out.println("SCOREBOAD:");
+        Collections.sort(players);
+        int co = 1;
+        for(int i = 0; i<players.size(); i++){
+            System.out.println(co + ": " + players.get(i).name + " " + players.get(i).money + " SEK");
+            co++;
+        }
     }
 
 }
