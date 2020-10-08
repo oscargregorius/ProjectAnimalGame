@@ -335,6 +335,34 @@ public class Player implements Comparable<Player>{
         }
     }
 
+    public void checkIfAnimalsAreSick(){
+        if(animals.size() <= 0){return;}
+        for(int i = 0; i < animals.size(); i++){
+            int chance = 1+ random.nextInt(5);
+            if(chance == 1){
+                System.out.println(ANSI_RED + this.name.toUpperCase() + " YOUR ANIMAL " +
+                        animals.get(i).name.toUpperCase() + " IS SICK" + ANSI_RESET);
+                System.out.println("Your balance: " + this.money);
+                System.out.println("Do you want to try to save " +  animals.get(i).name + "?");
+                System.out.println("1: Yes (cost 1500)\n2: No (" + animals.get(i).name + " will die..)");
+                input = scanner.next();
+                if(input.equals("1")){
+                    this.money -= 1500;
+                    chance = 1+ random.nextInt(2);
+                    if(chance == 1){
+                        System.out.println(animals.get(i).name + " is a lucky one, he made it!");
+                    }else{
+                        System.out.println(animals.get(i).name + " did not made it..");
+                        animals.remove(animals.get(i));
+                    }
+                }else{
+                    System.out.println("Rest in peace " + animals.get(i).name);
+                    animals.remove(animals.get(i));
+                }
+            }
+        }
+    }
+
     @Override
     public int compareTo(Player otherPlayer) {
         return otherPlayer.getMoney() - money;

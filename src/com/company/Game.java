@@ -54,6 +54,7 @@ public class Game {
                 do {
                     check = false;
                     players.get(j).checkLifeStatus();
+                    players.get(j).checkIfAnimalsAreSick();
                     System.out.println("Round: " + (i + 1));
                     System.out.println("What do you want to do " + players.get(j).name + "?");
                     System.out.println("1: Buy a animal");
