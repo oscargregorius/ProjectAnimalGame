@@ -106,6 +106,7 @@ public class Game {
                     System.out.println("\n".repeat(50));
                 }while(check);
             }
+            increaseAge();
             looseHealth();
         }
         checkTheWinner();
@@ -124,7 +125,9 @@ public class Game {
         System.out.println(p.name + "s animals:");
 
         for(int i = 0; i < p.animals.size(); i++){
-            System.out.println(p.animals.get(i).name + " " + p.animals.get(i).gender + " health status: " + p.animals.get(i).health);
+            System.out.println("[" + p.animals.get(i).getClass().getSimpleName() + "] " + p.animals.get(i).name + " | "
+                    + p.animals.get(i).age + " years old | "
+                    + p.animals.get(i).gender + " | health status:" + p.animals.get(i).health);
         }
         System.out.println("-".repeat(30));
         System.out.println(p.name + "s food list:");
@@ -154,6 +157,19 @@ public class Game {
         for(int i = 0; i<players.size(); i++){
             System.out.println(co + ": " + players.get(i).name + " " + players.get(i).money + " SEK");
             co++;
+        }
+    }
+    public void increaseAge(){
+
+        for(int i = 0; i < players.size(); i++){
+            for(int j = 0; j < players.get(i).animals.size(); j++){
+                players.get(i).animals.get(j).age +=1;
+                if(players.get(i).animals.get(j).age >= players.get(i).animals.get(j).maxAge){
+                    System.out.println(Player.ANSI_RED + players.get(i).animals.get(j).name.toUpperCase() +
+                            " IS NOW DEAD BY AGE.." + Player.ANSI_RESET);
+                    players.get(i).animals.remove(players.get(i).animals.get(j));
+                }
+            }
         }
     }
 

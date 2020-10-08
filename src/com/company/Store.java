@@ -53,10 +53,10 @@ public class Store {
             while (true) {
                 input = scanner.next();
                 if (input.equals("1")) {
-                    return new Dog(input2, "male");
+                    return new Horse(input2, "male");
                 }
                 if(input.equals("2")) {
-                    return new Dog(input2, "female");
+                    return new Horse(input2, "female");
                 }
                 System.out.println("Not a valid move. type 1 or 2");
             }
@@ -69,10 +69,10 @@ public class Store {
             while (true) {
                 input = scanner.next();
                 if (input.equals("1")) {
-                    return new Dog(input2, "male");
+                    return new Cow(input2, "male");
                 }
                 if(input.equals("2")) {
-                    return new Dog(input2, "female");
+                    return new Cow(input2, "female");
                 }
                 System.out.println("Not a valid move. Type 1 or 2");
             }
@@ -85,10 +85,10 @@ public class Store {
             while (true) {
                 input = scanner.next();
                 if (input.equals("1")) {
-                    return new Dog(input2, "male");
+                    return new Cat(input2, "male");
                 }
                 if(input.equals("2")) {
-                    return new Dog(input2, "female");
+                    return new Cat(input2, "female");
                 }
                 System.out.println("Not a valid move. Type 1 or 2");
             }
@@ -101,10 +101,10 @@ public class Store {
             while (true) {
                 input = scanner.next();
                 if (input.equals("1")) {
-                    return new Dog(input2, "male");
+                    return new Pig(input2, "male");
                 }
                 if(input.equals("2")) {
-                    return new Dog(input2, "female");
+                    return new Pig(input2, "female");
                 }
                 System.out.println("Not a valid move. Type 1 or 2.");
             }

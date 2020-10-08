@@ -5,6 +5,7 @@ public class Cat extends Animal {
     public Cat(String name, String gender) {
         super(name, gender);
         this.price = 2000;
+        this.maxAge = 9;
     }
 
     public boolean eat(Food f) {
