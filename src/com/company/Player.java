@@ -163,9 +163,11 @@ public class Player implements Comparable<Player>{
                     System.out.println("Not a valid move");
                 }
             }
+            int calcAge = animals.get(Integer.parseInt(input) - 1).age * 100;
             int calc = animals.get(Integer.parseInt(input) - 1).health * animals.get(Integer.parseInt(input) - 1).price;
-            this.money += calc / 100;
+            this.money += calc / 100 - calcAge;
             animals.remove(Integer.parseInt(input) - 1);
+            System.out.println("Your current balance: " + this.money);
             System.out.println("Do you want to sell another animal? y/n");
             input = scanner.next();
             if (input.equals("n")) {
