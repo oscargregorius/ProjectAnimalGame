@@ -51,10 +51,10 @@ public class Game {
     public void start(){
         for(int i = 0; i < rounds; i++) {
             for(int j = 0; j < players.size(); j++) {
+                players.get(j).checkIfAnimalsAreSick();
+                players.get(j).checkLifeStatus();
                 do {
                     check = false;
-                    players.get(j).checkLifeStatus();
-                    players.get(j).checkIfAnimalsAreSick();
                     System.out.println("Round: " + (i + 1));
                     System.out.println("What do you want to do " + players.get(j).name + "?");
                     System.out.println("1: Buy a animal");
@@ -65,18 +65,16 @@ public class Game {
                     System.out.println("6: Trade with players");
                     showAnimals(players.get(j));
                     while(true) {
-                        input = scanner.next();
-                        if(input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4") || input.equals("5")
-                        || input.equals("6")){
-                            break;
+                        try {
+                            input = scanner.next();
+                            if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 6) {
+                                System.out.println("invalid move.");
+                            } else {
+                                break;
+                            }
+                        }catch (Exception e){
+                            System.out.println("Not a valid move");
                         }
-                        System.out.println("Not a valid move");
-                    }
-
-                    if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 6){
-                        System.out.println("invalid move enter a key following by enter to continue.");
-                        scanner.next();
-                        check = true;
                     }
 
                     switch (input) {

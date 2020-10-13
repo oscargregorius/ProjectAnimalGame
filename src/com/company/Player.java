@@ -22,35 +22,35 @@ public class Player implements Comparable<Player>{
     }
 
     public void buyAnimal(){
-        if(checkBalance()){
-            System.out.println("You dont have enough money. Press any key following by enter to continue");
-            scanner.next();
-            return;
-        }
-        do {
+        while (money !=0){
             animals.add(Store.showAnimalsForSale(this));
             System.out.println("Buy another one? y/n");
             String input = scanner.next();
             if(input.equals("n")){
                 return;
             }
-        }while (money !=0);
-    }
-
-    public void buyFood(){
+        }
         if(checkBalance()){
             System.out.println("You dont have enough money. Press any key following by enter to continue");
             scanner.next();
             return;
         }
-        do {
+    }
+
+    public void buyFood(){
+        while (money !=0){
             Store.showFoodForSale(this);
             System.out.println("Buy another one? y/n");
             String input = scanner.next();
             if(input.equals("n")){
                 return;
             }
-        }while (money !=0);
+        }
+        if(checkBalance()){
+            System.out.println("You dont have enough money. Press any key following by enter to continue");
+            scanner.next();
+            return;
+        }
     }
 
     public void feedAnimal(Player p){
@@ -105,7 +105,13 @@ public class Player implements Comparable<Player>{
                     kg = Integer.parseInt(scanner.next());
                     if (kg > food.get(Integer.parseInt(input2) - 1).kg) {
                         System.out.println("You dont have that much..");
-                    } else {
+                        continue;
+                    }
+                    if(kg == 0){
+                        System.out.println("You have to feed your animal with 0 KG");
+                        continue;
+                    }
+                    else {
                         break;
                     }
                 }catch (Exception e){
@@ -332,8 +338,10 @@ public class Player implements Comparable<Player>{
 
     public void sellAllMyAnimals(){
         for(int i = 0; i < animals.size(); i++){
+            int calcAge = animals.get(i).age * 100;
             int calc = animals.get(i).health * animals.get(i).price;
             this.money += calc / 100;
+            this.money -= calcAge;
         }
     }
 
@@ -349,6 +357,12 @@ public class Player implements Comparable<Player>{
                 System.out.println("1: Yes (cost 1500)\n2: No (" + animals.get(i).name + " will die..)");
                 input = scanner.next();
                 if(input.equals("1")){
+                    if(this.money < 1500){
+                        System.out.println("Sorry you dont have enough money");
+                        System.out.println(animals.get(i).name + " did not made it..");
+                        animals.remove(animals.get(i));
+                        return;
+                    }
                     this.money -= 1500;
                     chance = 1+ random.nextInt(2);
                     if(chance == 1){
