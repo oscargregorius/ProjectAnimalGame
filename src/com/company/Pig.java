@@ -4,7 +4,7 @@ public class Pig extends Animal {
 
     public Pig(String name, String gender) {
         super(name, gender);
-        this.price = 2000;
+        this.price = 1500;
         this.maxAge = 5;
         this.possibleChildren = 3;
     }

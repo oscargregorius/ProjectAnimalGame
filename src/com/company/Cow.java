@@ -4,8 +4,8 @@ public class Cow extends Animal {
 
     public Cow(String name, String gender) {
         super(name, gender);
-        this.price = 2000;
-        this.maxAge = 2;
+        this.price = 1000;
+        this.maxAge = 6;
         this.possibleChildren = 1;
     }
 

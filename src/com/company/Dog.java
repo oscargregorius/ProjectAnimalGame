@@ -4,7 +4,7 @@ public class Dog extends Animal {
 
     public Dog(String name, String gender) {
         super(name, gender);
-        this.price = 2000;
+        this.price = 2500;
         this.maxAge = 14;
         this.possibleChildren = 4;
     }
