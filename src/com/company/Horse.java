@@ -6,6 +6,7 @@ public class Horse extends Animal {
         super(name, gender);
         this.price = 2000;
         this.maxAge = 10;
+        this.possibleChildren = 1;
     }
 
     @Override

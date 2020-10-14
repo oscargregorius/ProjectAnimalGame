@@ -15,6 +15,8 @@ public class Player implements Comparable<Player>{
     String input2 = "";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
 
     public Player(String name){
         this.name = name;
@@ -247,35 +249,54 @@ public class Player implements Comparable<Player>{
             }
         }while (!animals.get(Integer.parseInt(input) -1).getClass().getSimpleName().equals(animals.get(Integer.parseInt(input2) - 1).getClass().getSimpleName()));
 
-        int chance = 1 + random.nextInt(2);
+        int times = animals.get(Integer.parseInt(input2) - 1).possibleChildren;
 
-        if(chance == 1){
-            chance = 1 + random.nextInt(2);
-            if(chance == 1){
-                System.out.println("Congratz it is a boy!");
-                System.out.println("What name is the baby going to have?");
-                input = scanner.next();
-                if(type.equals("Dog")){animals.add(new Dog(input,"male"));}
-                if(type.equals("Cow")){animals.add(new Cow(input,"male"));}
-                if(type.equals("Cat")){animals.add(new Cat(input,"male"));}
-                if(type.equals("Pig")){animals.add(new Pig(input,"male"));}
-                if(type.equals("Horse")){animals.add(new Horse(input,"male"));}
+        while (times > 0) {
+            int chance = 1 + random.nextInt(2);
+            if (chance == 1) {
+                chance = 1 + random.nextInt(2);
+                if (chance == 1) {
+                    System.out.println("Congratz it is a boy!");
+                    System.out.println("What name is the baby going to have?");
+                    input = scanner.next();
+                    if (type.equals("Dog")) {
+                        animals.add(new Dog(input, "male"));
+                    }
+                    if (type.equals("Cow")) {
+                        animals.add(new Cow(input, "male"));
+                    }
+                    if (type.equals("Cat")) {
+                        animals.add(new Cat(input, "male"));
+                    }
+                    if (type.equals("Pig")) {
+                        animals.add(new Pig(input, "male"));
+                    }
+                    if (type.equals("Horse")) {
+                        animals.add(new Horse(input, "male"));
+                    }
 
+                } else {
+                    System.out.println("Congratz it is a girl!");
+                    System.out.println("What name is the baby going to have?");
+                    input = scanner.next();
+                    if (type.equals("Dog")) {
+                        animals.add(new Dog(input, "female"));
+                    }
+                    if (type.equals("Cow")) {
+                        animals.add(new Cow(input, "female"));
+                    }
+                    if (type.equals("Cat")) {
+                        animals.add(new Cat(input, "female"));
+                    }
+                    if (type.equals("Pig")) {
+                        animals.add(new Pig(input, "female"));
+                    }
+                    if (type.equals("Horse")) {
+                        animals.add(new Horse(input, "female"));
+                    }
+                }
             }
-            else{
-                System.out.println("Congratz it is a girl!");
-                System.out.println("What name is the baby going to have?");
-                input = scanner.next();
-                if(type.equals("Dog")){animals.add(new Dog(input,"female"));}
-                if(type.equals("Cow")){animals.add(new Cow(input,"female"));}
-                if(type.equals("Cat")){animals.add(new Cat(input,"female"));}
-                if(type.equals("Pig")){animals.add(new Pig(input,"female"));}
-                if(type.equals("Horse")){animals.add(new Horse(input,"female"));}
-            }
-        }else{
-            System.out.println("Sorry, it did not work this time..");
-            System.out.println("Press any key following by enter to continue");
-            scanner.next();
+            times--;
         }
     }
 

@@ -6,6 +6,7 @@ public class Pig extends Animal {
         super(name, gender);
         this.price = 2000;
         this.maxAge = 5;
+        this.possibleChildren = 3;
     }
 
     @Override

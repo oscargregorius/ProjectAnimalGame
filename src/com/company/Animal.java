@@ -9,6 +9,7 @@ public abstract class Animal {
     int price;
     int age;
     int maxAge;
+    int possibleChildren;
 
     public Animal(String name, String gender){
         this.name = name;
