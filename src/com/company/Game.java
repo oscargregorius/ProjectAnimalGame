@@ -193,11 +193,22 @@ public class Game {
 
     public boolean tradeWithPlayers(Player p){
         System.out.println("\n".repeat(50));
-        System.out.println("What do you want to do?");
-        System.out.println("1: Buy animal from player\n2: Sell animal to player\n3:EXIT");
-        input = scanner.next();
+        System.out.println(Player.ANSI_YELLOW + "What do you want to do?");
+        System.out.println("1: Buy animal from player\n2: Sell animal to player\n3:EXIT" + Player.ANSI_RESET);
+        while (true) {
+            try {
+                input = scanner.next();
+                if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 3) {
+                    System.out.println("Not a valid move");
+                } else {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("not a valid move");
+            }
+        }
         if (input.equals("1")) {
-            if(checkOtherPlayersAnimal(p)){
+            if(!checkOtherPlayersAnimal(p)){
                 System.out.println("The other players does not have any animals yet." +
                         " Press any key following by enter to continue");
                 scanner.next();
@@ -235,16 +246,19 @@ public class Game {
         }
         co = 1;
         while (true) {
-            input = scanner.next();
-            if(players.get(Integer.parseInt(input) - 1).equals(p)){
-                System.out.println("I cant trade with myself..");
-                continue;
-            }
-            if (players.get(Integer.parseInt(input) - 1).animals.size() <= 0) {
-                System.out.println(players.get(Integer.parseInt(input) - 1).name + " dont have any animals yet.");
-            }
-            else {
-                break;
+            try {
+                input = scanner.next();
+                if (players.get(Integer.parseInt(input) - 1).equals(p)) {
+                    System.out.println("I cant trade with myself..");
+                    continue;
+                }
+                if (players.get(Integer.parseInt(input) - 1).animals.size() <= 0) {
+                    System.out.println(players.get(Integer.parseInt(input) - 1).name + " dont have any animals yet.");
+                } else {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Invalid move");
             }
         }
         System.out.println("What animal do you want to buy from " + players.get(Integer.parseInt(input) - 1).name);
@@ -252,22 +266,56 @@ public class Game {
             System.out.println(co + ": " + players.get(Integer.parseInt(input) - 1).animals.get(i).name);
             co++;
         }
-        String choice = scanner.next();
+        String choice;
+        while (true) {
+            try {
+                choice = scanner.next();
+                if (Integer.parseInt(choice) < players.get(Integer.parseInt(input) - 1).animals.size() ||
+                        Integer.parseInt(choice) > players.get(Integer.parseInt(input) - 1).animals.size()) {
+                    System.out.println("Invalid move");
+                } else {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Invalid move");
+            }
+        }
+        System.out.println("Your balance: " + p.money);
         System.out.println("How much do you want to offer");
         String offer;
         while (true) {
-            offer = scanner.next();
-            if (p.money < Integer.parseInt(offer)) {
-                System.out.println("You dont have that much money");
-            }else{
-                break;
+            try {
+                offer = scanner.next();
+                if (p.money < Integer.parseInt(offer)) {
+                    System.out.println("You dont have that much money");
+                }
+                if(Integer.parseInt(offer) <= 0){
+                    System.out.println("You have to at least offer 1SEK");
+                }
+                else {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Invalid move");
             }
         }
         System.out.println(players.get(Integer.parseInt(input) - 1).name + " " + players.get(players.indexOf(p)).name +
                 " wants to buy " + players.get(Integer.parseInt(input) - 1).animals.get(Integer.parseInt(choice) - 1).name +
                 " for " + Integer.parseInt(offer) + "SEK do you want to accept the offer?");
         System.out.println("1: Yes\n2: No");
-        String option = scanner.next();
+        String option;
+        while (true) {
+            try {
+                option = scanner.next();
+                if (Integer.parseInt(option) < 1 || Integer.parseInt(option) > 2) {
+                    System.out.println("invalid move");
+                } else {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Not a valid move");
+            }
+        }
         if(option.equals("1")){
             players.get(players.indexOf(p)).money -= Integer.parseInt(offer);
             players.get(Integer.parseInt(input) - 1).money += Integer.parseInt(offer);
@@ -309,14 +357,16 @@ public class Game {
                 offer = scanner.next();
                 if (p.money < Integer.parseInt(offer)) {
                     System.out.println("You dont have that much money");
-                    continue;
                 }
-                if(Integer.parseInt(offer) <= p.money){
+                if(Integer.parseInt(offer) <= 0){
+                    System.out.println("You have to offer more than 0 SEK");
+                }
+                else{
                     break;
                 }
+
             }catch (Exception e){
                 System.out.println("Invalid move");
-                continue;
             }
         }
         System.out.println("Who do you want to sell it to?");
@@ -351,7 +401,19 @@ public class Game {
         System.out.println(players.get(Integer.parseInt(choice)-1).name + " do you want to buy " + p.name + "s animal "
                 + p.animals.get(Integer.parseInt(input)-1).name + " for " + offer + "SEK?");
         System.out.println("1: Yes\n2: No");
-        String option = scanner.next();
+        String option;
+        while(true) {
+            try {
+                option = scanner.next();
+                if (Integer.parseInt(option) < 1 || Integer.parseInt(option) > 2) {
+                    System.out.println("Invalid move");
+                } else {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Invalid move");
+            }
+        }
         if(option.equals("1")){
             players.get(Integer.parseInt(choice)-1).animals.add(p.animals.get(Integer.parseInt(input)-1));
             p.animals.remove(Integer.parseInt(input)-1);
@@ -371,7 +433,13 @@ public class Game {
             }
         }
         if(amount == players.size()){
-            System.out.println("The players have no animals yet. press any key following by enter to continue");
+            System.out.println("The other players does not have any animals yet. " +
+                    "Press any key following by enter to continue");
+            scanner.next();
+            return false;
+        }
+        if(players.size() == 1){
+            System.out.println("You cant trade with yourself. Press any key following by enter to continue");
             scanner.next();
             return false;
         }
@@ -390,7 +458,8 @@ public class Game {
         if(co == players.size() - 1){
             return true;
         }
-        return false;
+            return false;
+
     }
 
 }
