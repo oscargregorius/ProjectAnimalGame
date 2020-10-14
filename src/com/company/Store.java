@@ -147,11 +147,17 @@ public class Store {
         if(input.equals("1")){
             System.out.println("How many kilos? Minimum 1kg");
             while (true) {
+                while (true) {
                     input2 = scanner.next();
+                    if (input2.equals("0")) {
+                        System.out.println("You have to buy at least 1KG");
+                    }else{break;}
+                }
                     try {
                         if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
                             System.out.println("You dont have that much money. Try again.");
-                        } else {
+                        }
+                        else {
                             break;
                         }
                     }catch (Exception e){
@@ -166,7 +172,12 @@ public class Store {
         if(input.equals("2")){
             System.out.println("How many kilos? Minimum 1kg");
             while (true) {
-                input2 = scanner.next();
+                while (true) {
+                    input2 = scanner.next();
+                    if (input2.equals("0")) {
+                        System.out.println("You have to buy at least 1KG");
+                    }else{break;}
+                }
                 try {
                     if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
                         System.out.println("You dont have that much money. Try again.");
@@ -185,7 +196,12 @@ public class Store {
         if(input.equals("3")){
             System.out.println("How many kilos? Minimum 1kg");
             while (true) {
-                input2 = scanner.next();
+                while (true) {
+                    input2 = scanner.next();
+                    if (input2.equals("0")) {
+                        System.out.println("You have to buy at least 1KG");
+                    }else{break;}
+                }
                 try {
                     if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
                         System.out.println("You dont have that much money. Try again.");

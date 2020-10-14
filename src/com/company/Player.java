@@ -382,19 +382,27 @@ public class Player implements Comparable<Player>{
                         System.out.println("Sorry you dont have enough money");
                         System.out.println(animals.get(i).name + " did not made it..");
                         animals.remove(animals.get(i));
+                        System.out.println("Press any key following by enter to continue.");
+                        scanner.next();
                         return;
                     }
                     this.money -= 1500;
                     chance = 1+ random.nextInt(2);
                     if(chance == 1){
                         System.out.println(animals.get(i).name + " is a lucky one, he made it!");
+                        System.out.println("Press any key following by enter to continue.");
+                        scanner.next();
                     }else{
                         System.out.println(animals.get(i).name + " did not made it..");
                         animals.remove(animals.get(i));
+                        System.out.println("Press any key following by enter to continue.");
+                        scanner.next();
                     }
                 }else{
                     System.out.println("Rest in peace " + animals.get(i).name);
                     animals.remove(animals.get(i));
+                    System.out.println("Press any key following by enter to continue.");
+                    scanner.next();
                 }
             }
         }

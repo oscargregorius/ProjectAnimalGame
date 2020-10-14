@@ -14,30 +14,35 @@ public class Game {
     String input = "";
 
     public Game(){
-        try {
             while (true) {
                 System.out.println("Welcome, how many rounds do u want to play? 5-30?");
-                rounds = scanner.nextInt();
-
-                if (rounds < 5 || rounds > 30) {
-                    System.out.println("please enter a number between 5 - 30.");
-                } else {
-                    break;
+                try {
+                    rounds = scanner.nextInt();
+                    if (rounds < 5 || rounds > 30) {
+                        System.out.println("please enter a number between 5 - 30.");
+                    } else {
+                        break;
+                    }
+                }catch (Exception e){
+                    System.out.println("Not a valid move");
+                    scanner.next();
                 }
             }
             while (true) {
                 System.out.println("How many players do you wanna play with 1-4?");
-                amountOfPlayers = scanner.nextInt();
-                if (amountOfPlayers < 1 || amountOfPlayers > 4) {
-                    System.out.println("Please enter a number between 1-4 ");
-                } else {
-                    break;
+                try {
+                    amountOfPlayers = scanner.nextInt();
+                    if (amountOfPlayers < 1 || amountOfPlayers > 4) {
+                        System.out.println("Please enter a number between 1-4 ");
+                    } else {
+                        break;
+                    }
+                }catch (Exception e){
+                    System.out.println("Not a valid move");
+                    scanner.next();
                 }
             }
-        }catch (Exception e){
-            System.out.println("Not a valid input");
-            new Game();
-        }
+
         for(int i = 0; i < amountOfPlayers; i++){
             System.out.println("Player " + (i + 1) + " enter your name");
             String name = scanner.next();
@@ -51,19 +56,23 @@ public class Game {
     public void start(){
         for(int i = 0; i < rounds; i++) {
             for(int j = 0; j < players.size(); j++) {
+                if(i == (rounds - 1)){
+                    System.out.println(Player.ANSI_RED + "THIS IS THE LAST ROUND!!" + Player.ANSI_RESET);
+                }
                 players.get(j).checkIfAnimalsAreSick();
                 players.get(j).checkLifeStatus();
                 do {
                     check = false;
-                    System.out.println("Round: " + (i + 1));
-                    System.out.println("What do you want to do " + players.get(j).name + "?");
+                    System.out.println(Player.ANSI_PURPLE + "ROUND: " + (i + 1) + Player.ANSI_RESET);
+                    System.out.println(Player.ANSI_YELLOW + "What do you want to do " + players.get(j).name + "?"
+                            + Player.ANSI_RESET);
                     System.out.println("1: Buy a animal");
                     System.out.println("2: Buy food");
                     System.out.println("3: Feed animal");
                     System.out.println("4: Sell animals");
                     System.out.println("5: Mate animals");
                     System.out.println("6: Trade with players");
-                    showAnimals(players.get(j));
+                    showAnimalsAndFood(players.get(j));
                     while(true) {
                         try {
                             input = scanner.next();
@@ -127,41 +136,40 @@ public class Game {
             players.get(i).minHealth();
         }
     }
-    public void showAnimals(Player p){
-        System.out.println("-".repeat(30));
-        System.out.println("Current balance: " + p.money);
-        System.out.println("-".repeat(30));
-        System.out.println(p.name + "s animals:");
+    public void showAnimalsAndFood(Player p){
+        System.out.println(Player.ANSI_YELLOW + "-".repeat(30) + Player.ANSI_RESET);
+        System.out.println(Player.ANSI_YELLOW + "Current balance: " + p.money + Player.ANSI_RESET);
+        System.out.println(Player.ANSI_YELLOW + "-".repeat(30) + Player.ANSI_RESET);
+        System.out.println(Player.ANSI_YELLOW + p.name + "s animals:" + Player.ANSI_RESET);
 
         for(int i = 0; i < p.animals.size(); i++){
             System.out.println("[" + p.animals.get(i).getClass().getSimpleName() + "] " + p.animals.get(i).name + " | "
                     + p.animals.get(i).age + " years old | "
                     + p.animals.get(i).gender + " | health status:" + p.animals.get(i).health);
         }
-        System.out.println("-".repeat(30));
-        System.out.println(p.name + "s food list:");
+        System.out.println(Player.ANSI_YELLOW + "-".repeat(30) + Player.ANSI_RESET);
+        System.out.println(Player.ANSI_YELLOW + p.name + "s food list:" + Player.ANSI_RESET);
 
         for(int i = 0; i < p.food.size();i++){
-            System.out.println(p.food.get(i).name + " " + p.food.get(i).kg + "kg");
+            System.out.println(p.food.get(i).name + " " + p.food.get(i).kg + "KG");
         }
-        System.out.println("-".repeat(30));
+        System.out.println(Player.ANSI_YELLOW + "-".repeat(30) + Player.ANSI_RESET);
     }
     public void checkTheWinner(){
         for(int i = 0; i < players.size(); i++){
             players.get(i).sellAllMyAnimals();
         }
-        Player winner = null;
-        for(int i = 0; i < players.size(); i++) {
-            winner = players.get(0);
-            if (players.get(i).money > winner.money) {
-                winner = players.get(i);
-            }
-        }
-        System.out.println("-".repeat(30));
-        System.out.println("The winner is: " + winner.name);
+
         System.out.println("-".repeat(30));
         System.out.println("SCOREBOAD:");
         Collections.sort(players);
+        if(players.get(0).money == players.get(1).money){
+            System.out.println("ITS A DRAW BETWEEN " + players.get(0).name.toUpperCase() + " & "
+                    + players.get(1).name.toUpperCase());
+        }else {
+            System.out.println("THE WINNER IS: " + players.get(0).name.toUpperCase());
+        }
+        System.out.println("-".repeat(30));
         int co = 1;
         for(int i = 0; i<players.size(); i++){
             System.out.println(co + ": " + players.get(i).name + " " + players.get(i).money + " SEK");
