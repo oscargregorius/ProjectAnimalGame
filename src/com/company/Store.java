@@ -12,23 +12,28 @@ public class Store {
 
     public static Animal showAnimalsForSale(Player p){
         System.out.println("\n".repeat(50));
-
-            System.out.println("Welcome to the pet shop");
+            showInfoAboutAnimals();
+            System.out.println(Player.ANSI_YELLOW + "Welcome to the pet shop");
             System.out.println("Your balace: " + p.money);
-            System.out.println("Which animal do you want to buy?");
+            System.out.println("Which animal do you want to buy?" + Player.ANSI_RESET);
             int co = 1;
             for (Animal a : animals) {
                 System.out.println(co + ": " + a.name + " price: " + a.price);
                 co++;
             }
-
                 while (true) {
-                    input = scanner.next();
-                    if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4") || input.equals("5")){
-                        break;
+                    try {
+                        input = scanner.next();
+                        if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 5) {
+                            System.out.println("Not a valid move, type a number between 1-5");
+                        }else{
+                            break;
+                        }
+                    }catch (Exception e){
+                        System.out.println("Not a valid move");
                     }
-                    System.out.println("Not a valid move, type a number between 1-5");
                 }
+
         if(input.equals("1")){
             p.money -= animals.get(Integer.parseInt(input) - 1).price;
             System.out.println("What do you want to call your " + animals.get(Integer.parseInt(input) - 1).name);
@@ -114,19 +119,20 @@ public class Store {
 
     public static void showFoodForSale(Player p){
         System.out.println("\n".repeat(50));
-        System.out.println("Welcome to the pet shop");
+        showInfoAboutFood();
+        System.out.println(Player.ANSI_YELLOW + "Welcome to the pet shop");
         System.out.println("Your balace: " + p.money);
-        System.out.println("What food do you want to buy?");
+        System.out.println("What food do you want to buy?" + Player.ANSI_RESET);
         int co = 1;
         for(Food f : food){
             if(f.name.equals("Meat")) {
-                System.out.println(co + ": (Dogs and cats food) " + f.name + " price: " + f.price);
+                System.out.println(co + ": " + f.name + " price: " + f.price);
             }
             if(f.name.equals("Apple")) {
-                System.out.println(co + ": (cats food) " + f.name + " price: " + f.price);
+                System.out.println(co + ": " + f.name + " price: " + f.price);
             }
             if(f.name.equals("Grass")) {
-                System.out.println(co + ": (Horses, cows and pigs food) " + f.name + " price: " + f.price);
+                System.out.println(co + ": " + f.name + " price: " + f.price);
             }
             co++;
         }
@@ -218,6 +224,26 @@ public class Store {
             }
         }
         return false;
+    }
+    public static void showInfoAboutAnimals(){
+        System.out.println(Player.ANSI_PURPLE + "-".repeat(70));
+        System.out.println("INFO ABOUT THE ANIMALS");
+        System.out.println("1: DOG: Maximum age = 14 | Possible children: 4 | Food: Meat\n" +
+                "2: HORSE: Maximum age = 10 | Possible children: 1 | Food: Grass\n" +
+                "3: COW: Maximum age = 6 | Possible children: 1 | Food: Grass\n" +
+                "4: CAT: Maximum age = 9 | Possible children: 4 | Food: Apple, Meat\n" +
+                "5: PIG: Maximum age = 5 | Possible children: 3 | Food: Grass");
+        System.out.println("-".repeat(70)+"\n" + Player.ANSI_RESET);
+    }
+
+    public static void showInfoAboutFood(){
+        System.out.println(Player.ANSI_PURPLE + "-".repeat(50));
+        System.out.println("INFO ABOUT THE FOOD");
+        System.out.println("1: MEAT: Dogs and cats eats meat.\n" +
+                "2: APPLE: Cats eats this.\n" +
+                "3: GRASS: Horses, cows and pigs eats this.");
+        System.out.println("Every kg food gives 10HP");
+        System.out.println("-".repeat(50)+"\n" + Player.ANSI_RESET);
     }
 
 }
