@@ -88,7 +88,8 @@ public class Game {
 
                     switch (input) {
                         case "1":
-                            if(players.get(j).checkBalance()){check = true;}
+                            if(players.get(j).checkBalance() ||
+                                    players.get(j).money < players.get(j).checkTheCheapestAnimal()){check = true;}
                             players.get(j).buyAnimal();
                             break;
                         case "2":

@@ -24,7 +24,12 @@ public class Player implements Comparable<Player>{
     }
 
     public void buyAnimal(){
-        while (money !=0){
+        if(this.money < checkTheCheapestAnimal()){
+            System.out.println("You dont have enough money. Press any key following by enter to continue");
+            scanner.next();
+            return;
+        }
+        while (money !=0 && this.money >= checkTheCheapestAnimal()){
             animals.add(Store.showAnimalsForSale(this));
             System.out.println("Buy another one? y/n");
             String input = scanner.next();
@@ -32,11 +37,10 @@ public class Player implements Comparable<Player>{
                 return;
             }
         }
-        if(checkBalance()){
-            System.out.println("You dont have enough money. Press any key following by enter to continue");
-            scanner.next();
-            return;
-        }
+        System.out.println("You dont have enough money. Press any key following by enter to continue");
+        scanner.next();
+        return;
+
     }
 
     public void buyFood(){
@@ -415,6 +419,16 @@ public class Player implements Comparable<Player>{
 
     public int getMoney(){
         return this.money;
+    }
+
+    public int checkTheCheapestAnimal(){
+        int cheapest = Store.animals.get(0).price;
+        for(int i = 0; i < Store.animals.size(); i++){
+            if(Store.animals.get(i).price < cheapest) {
+                cheapest = Store.animals.get(i).price;
+            }
+        }
+        return cheapest;
     }
 
 }

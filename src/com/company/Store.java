@@ -26,7 +26,11 @@ public class Store {
                         input = scanner.next();
                         if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 5) {
                             System.out.println("Not a valid move, type a number between 1-5");
-                        }else{
+                        }
+                        if(Store.animals.get(Integer.parseInt(input) -1).price > p.money){
+                            System.out.println("You dont have enough money for this animal.");
+                        }
+                        else{
                             break;
                         }
                     }catch (Exception e){
@@ -137,11 +141,19 @@ public class Store {
             co++;
         }
         while(true) {
-            input = scanner.next();
-            if(input.equals("1") || input.equals("2") || input.equals("3")){
-                break;
+            try {
+                input = scanner.next();
+                if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 3) {
+                    System.out.println("Not a valid move");
+                }
+                if (Store.food.get(Integer.parseInt(input) - 1).price > p.money) {
+                    System.out.println("You dont have enough money for that.");
+                } else {
+                    break;
+                }
+            }catch (Exception e){
+                System.out.println("Not a valid move");
             }
-            System.out.println("Not a valid move");
         }
 
         if(input.equals("1")){
