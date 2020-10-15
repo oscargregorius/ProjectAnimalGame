@@ -286,11 +286,11 @@ public class Game {
         while (true) {
             try {
                 offer = scanner.next();
-                if (p.money < Integer.parseInt(offer)) {
-                    System.out.println("You dont have that much money");
-                }
                 if(Integer.parseInt(offer) <= 0){
                     System.out.println("You have to at least offer 1SEK");
+                }
+                else if (p.money < Integer.parseInt(offer)) {
+                    System.out.println("You dont have that much money");
                 }
                 else {
                     break;
@@ -350,6 +350,7 @@ public class Game {
                 System.out.println("Not a valid move");
             }
         }
+        System.out.println("Your balance: " + p.money);
         System.out.println("How much do you want to sell " + p.animals.get(Integer.parseInt(input)-1).name + " for?");
         String offer;
         while (true) {
@@ -358,7 +359,7 @@ public class Game {
                 if (p.money < Integer.parseInt(offer)) {
                     System.out.println("You dont have that much money");
                 }
-                if(Integer.parseInt(offer) <= 0){
+                else if(Integer.parseInt(offer) <= 0){
                     System.out.println("You have to offer more than 0 SEK");
                 }
                 else{
