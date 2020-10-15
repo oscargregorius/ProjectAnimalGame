@@ -15,7 +15,7 @@ public class Game {
 
     public Game(){
             while (true) {
-                System.out.println("Welcome, how many rounds do u want to play? 5-30?");
+                System.out.println(Player.ANSI_YELLOW + "Welcome, how many rounds do u want to play? 5-30?" + Player.ANSI_RESET);
                 try {
                     rounds = scanner.nextInt();
                     if (rounds < 5 || rounds > 30) {
@@ -29,7 +29,7 @@ public class Game {
                 }
             }
             while (true) {
-                System.out.println("How many players do you wanna play with 1-4?");
+                System.out.println(Player.ANSI_YELLOW + "How many players do you wanna play with 1-4?" + Player.ANSI_RESET);
                 try {
                     amountOfPlayers = scanner.nextInt();
                     if (amountOfPlayers < 1 || amountOfPlayers > 4) {
@@ -44,7 +44,7 @@ public class Game {
             }
 
         for(int i = 0; i < amountOfPlayers; i++){
-            System.out.println("Player " + (i + 1) + " enter your name");
+            System.out.println(Player.ANSI_YELLOW + "Player " + (i + 1) + " enter your name" + Player.ANSI_RESET);
             String name = scanner.next();
             players.add(new Player(name));
         }
@@ -161,7 +161,7 @@ public class Game {
             players.get(i).sellAllMyAnimals();
         }
 
-        System.out.println("-".repeat(30));
+        System.out.println(Player.ANSI_YELLOW + "-".repeat(30));
         System.out.println("SCOREBOAD:");
         Collections.sort(players);
         if(players.get(0).money == players.get(1).money){
@@ -173,7 +173,8 @@ public class Game {
         System.out.println("-".repeat(30));
         int co = 1;
         for(int i = 0; i<players.size(); i++){
-            System.out.println(co + ": " + players.get(i).name + " " + players.get(i).money + " SEK");
+            System.out.println(Player.ANSI_YELLOW + co + ": " + players.get(i).name + " " +
+                    "" + players.get(i).money + " SEK" + Player.ANSI_RESET);
             co++;
         }
     }

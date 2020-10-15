@@ -31,7 +31,7 @@ public class Player implements Comparable<Player>{
         }
         while (money !=0 && this.money >= checkTheCheapestAnimal()){
             animals.add(Store.showAnimalsForSale(this));
-            System.out.println("Buy another one? y/n");
+            System.out.println("Buy another one? key/n");
             String input = scanner.next();
             if(input.equals("n")){
                 return;
@@ -46,7 +46,7 @@ public class Player implements Comparable<Player>{
     public void buyFood(){
         while (money !=0){
             Store.showFoodForSale(this);
-            System.out.println("Buy another one? y/n");
+            System.out.println("Buy another one? key/n");
             String input = scanner.next();
             if(input.equals("n")){
                 return;
@@ -111,11 +111,9 @@ public class Player implements Comparable<Player>{
                     kg = Integer.parseInt(scanner.next());
                     if (kg > food.get(Integer.parseInt(input2) - 1).kg) {
                         System.out.println("You dont have that much..");
-                        continue;
                     }
-                    if(kg == 0){
-                        System.out.println("You have to feed your animal with 0 KG");
-                        continue;
+                    else if(kg <= 0){
+                        System.out.println("You have to feed your animal with at least 1 KG");
                     }
                     else {
                         break;
@@ -137,7 +135,7 @@ public class Player implements Comparable<Player>{
                 }
                 System.out.println(animals.get(Integer.parseInt(input) - 1).name + "s current health is: "
                         + animals.get(Integer.parseInt(input) - 1).health);
-                System.out.println("Feed another animal? y/n");
+                System.out.println("Feed another animal? key/n");
                 input = scanner.next();
                 if (input.equals("n")) {
                     return;
@@ -177,12 +175,13 @@ public class Player implements Comparable<Player>{
             }
             int calcAge = animals.get(Integer.parseInt(input) - 1).age * 100;
             int calc = animals.get(Integer.parseInt(input) - 1).health * animals.get(Integer.parseInt(input) - 1).price;
-            this.money += calc / 100 - calcAge;
+            this.money += calc / 100;
+            this.money -= calcAge;
             animals.remove(Integer.parseInt(input) - 1);
             System.out.println("Your current balance: " + this.money);
-            System.out.println("Do you want to sell another animal? y/n");
+            System.out.println("Do you want to sell another animal? key/n");
             input = scanner.next();
-            if (input.equals("n")) {
+            if (input.equals("n")){
                 return;
             }
         }

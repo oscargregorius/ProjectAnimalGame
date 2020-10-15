@@ -27,7 +27,7 @@ public class Store {
                         if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 5) {
                             System.out.println("Not a valid move, type a number between 1-5");
                         }
-                        if(Store.animals.get(Integer.parseInt(input) -1).price > p.money){
+                        else if(Store.animals.get(Integer.parseInt(input) -1).price > p.money){
                             System.out.println("You dont have enough money for this animal.");
                         }
                         else{
@@ -146,7 +146,7 @@ public class Store {
                 if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 3) {
                     System.out.println("Not a valid move");
                 }
-                if (Store.food.get(Integer.parseInt(input) - 1).price > p.money) {
+                else if (Store.food.get(Integer.parseInt(input) - 1).price > p.money) {
                     System.out.println("You dont have enough money for that.");
                 } else {
                     break;
@@ -159,14 +159,12 @@ public class Store {
         if(input.equals("1")){
             System.out.println("How many kilos? Minimum 1kg");
             while (true) {
-                while (true) {
+                try {
                     input2 = scanner.next();
-                    if (input2.equals("0")) {
+                    if (Integer.parseInt(input2) <= 0){
                         System.out.println("You have to buy at least 1KG");
-                    }else{break;}
-                }
-                    try {
-                        if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
+                        }
+                        else if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
                             System.out.println("You dont have that much money. Try again.");
                         }
                         else {
@@ -184,16 +182,15 @@ public class Store {
         if(input.equals("2")){
             System.out.println("How many kilos? Minimum 1kg");
             while (true) {
-                while (true) {
-                    input2 = scanner.next();
-                    if (input2.equals("0")) {
-                        System.out.println("You have to buy at least 1KG");
-                    }else{break;}
-                }
                 try {
-                    if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
+                    input2 = scanner.next();
+                    if (Integer.parseInt(input2) <= 0){
+                        System.out.println("You have to buy at least 1KG");
+                    }
+                    else if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
                         System.out.println("You dont have that much money. Try again.");
-                    } else {
+                    }
+                    else {
                         break;
                     }
                 }catch (Exception e){
@@ -208,16 +205,15 @@ public class Store {
         if(input.equals("3")){
             System.out.println("How many kilos? Minimum 1kg");
             while (true) {
-                while (true) {
-                    input2 = scanner.next();
-                    if (input2.equals("0")) {
-                        System.out.println("You have to buy at least 1KG");
-                    }else{break;}
-                }
                 try {
-                    if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
+                    input2 = scanner.next();
+                    if (Integer.parseInt(input2) <= 0){
+                        System.out.println("You have to buy at least 1KG");
+                    }
+                    else if (p.money < food.get(Integer.parseInt(input) - 1).price * Integer.parseInt(input2)) {
                         System.out.println("You dont have that much money. Try again.");
-                    } else {
+                    }
+                    else {
                         break;
                     }
                 }catch (Exception e){
