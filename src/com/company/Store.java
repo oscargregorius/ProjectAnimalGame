@@ -14,7 +14,7 @@ public class Store {
         System.out.println("\n".repeat(50));
             showInfoAboutAnimals();
             System.out.println(Player.ANSI_YELLOW + "Welcome to the pet shop");
-            System.out.println("Your balace: " + p.money);
+            System.out.println("Your balance: " + p.money);
             System.out.println("Which animal do you want to buy?" + Player.ANSI_RESET);
             int co = 1;
             for (Animal a : animals) {
@@ -28,7 +28,7 @@ public class Store {
                             System.out.println("Not a valid move, type a number between 1-5");
                         }
                         else if(Store.animals.get(Integer.parseInt(input) -1).price > p.money){
-                            System.out.println("You dont have enough money for this animal.");
+                            System.out.println("You don't have enough money for this animal.");
                         }
                         else{
                             break;

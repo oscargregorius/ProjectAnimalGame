@@ -61,6 +61,9 @@ public class Game {
                 }
                 players.get(j).checkIfAnimalsAreSick();
                 players.get(j).checkLifeStatus();
+                if(checkPlayersStatus(players.get(j))){
+                    continue;
+                }
                 do {
                     check = false;
                     System.out.println(Player.ANSI_PURPLE + "ROUND: " + (i + 1) + Player.ANSI_RESET);
@@ -162,7 +165,7 @@ public class Game {
         }
 
         System.out.println(Player.ANSI_YELLOW + "-".repeat(30));
-        System.out.println("SCOREBOAD:");
+        System.out.println("SCOREBOARD:");
         Collections.sort(players);
         if(players.get(0).money == players.get(1).money){
             System.out.println("ITS A DRAW BETWEEN " + players.get(0).name.toUpperCase() + " & "
@@ -233,7 +236,7 @@ public class Game {
     }
 
     public void buyFromPlayer(Player p){
-
+        int size;
         int co = 1;
         System.out.println("Which player do you want to buy from?");
         for(int i = 0; i < players.size(); i++){
@@ -262,6 +265,7 @@ public class Game {
                 System.out.println("Invalid move");
             }
         }
+        size = players.get(Integer.parseInt(input) - 1).animals.size();
         System.out.println("What animal do you want to buy from " + players.get(Integer.parseInt(input) - 1).name);
         for(int i = 0; i < players.get(Integer.parseInt(input) - 1).animals.size(); i++){
             System.out.println(co + ": " + players.get(Integer.parseInt(input) - 1).animals.get(i).name);
@@ -271,10 +275,13 @@ public class Game {
         while (true) {
             try {
                 choice = scanner.next();
-                if (Integer.parseInt(choice) < players.get(Integer.parseInt(input) - 1).animals.size() ||
-                        Integer.parseInt(choice) > players.get(Integer.parseInt(input) - 1).animals.size()) {
+                if(Integer.parseInt(choice) <= 0){
                     System.out.println("Invalid move");
-                } else {
+                }
+                else if(Integer.parseInt(choice) > size){
+                    System.out.println("Invalid move");
+                }
+                else {
                     break;
                 }
             }catch (Exception e){
@@ -462,6 +469,19 @@ public class Game {
         }
             return false;
 
+    }
+
+    public boolean checkPlayersStatus(Player p){
+        if(p.animals.size() == 0 && p.money <= 0){
+            if(!p.dead) {
+                System.out.println(Player.ANSI_RED + "GAME OVER " + p.name.toUpperCase() + Player.ANSI_RESET);
+                System.out.println("Press any key following by enter to continue");
+                scanner.next();
+            }
+            p.dead = true;
+            return true;
+        }
+        return false;
     }
 
 }

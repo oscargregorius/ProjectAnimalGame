@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Player implements Comparable<Player>{
     String name;
     int money;
+    boolean dead = false;
     Random random = new Random();
     ArrayList<Animal> animals = new ArrayList<Animal>();
     ArrayList<Food> food = new ArrayList<Food>();
@@ -25,7 +26,7 @@ public class Player implements Comparable<Player>{
 
     public void buyAnimal(){
         if(this.money < checkTheCheapestAnimal()){
-            System.out.println("You dont have enough money. Press any key following by enter to continue");
+            System.out.println("You don't have enough money. Press any key following by enter to continue");
             scanner.next();
             return;
         }
@@ -37,7 +38,7 @@ public class Player implements Comparable<Player>{
                 return;
             }
         }
-        System.out.println("You dont have enough money. Press any key following by enter to continue");
+        System.out.println("You don't have enough money. Press any key following by enter to continue");
         scanner.next();
         return;
 
@@ -53,7 +54,7 @@ public class Player implements Comparable<Player>{
             }
         }
         if(checkBalance()){
-            System.out.println("You dont have enough money. Press any key following by enter to continue");
+            System.out.println("You don't have enough money. Press any key following by enter to continue");
             scanner.next();
             return;
         }
@@ -62,7 +63,7 @@ public class Player implements Comparable<Player>{
     public void feedAnimal(Player p){
         while (true) {
             if(checkAnimalsToFeed()){
-                System.out.println("You dont have the right/enough type of food to feed your animals.");
+                System.out.println("You don't have the right/enough type of food to feed your animals.");
                 System.out.println("Press any key following by enter to continue");
                 scanner.next();
                 return;
@@ -150,7 +151,7 @@ public class Player implements Comparable<Player>{
     public void sellAnimal(){
         while (true) {
         if(animals.size() <= 0){
-            System.out.println("You dont have any animals to sell yet. Press any key following by enter to continue.");
+            System.out.println("You don't have any animals to sell yet. Press any key following by enter to continue.");
             scanner.next();
             return;
         }
